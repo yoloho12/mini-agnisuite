@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: hsl(243 75% 59%);
+  --color-primary-light: hsl(243 75% 69%);
+  --color-primary-dark: hsl(243 75% 45%);
+  --color-accent: hsl(38 92% 50%);
+  --color-accent-light: hsl(38 92% 60%);
+  --color-success: hsl(152 69% 41%);
+  --color-success-light: hsl(152 69% 51%);
+  --color-danger: hsl(350 89% 60%);
+  --color-danger-light: hsl(350 89% 70%);
+  --color-background: hsl(222 47% 8%);
+  --color-card: hsl(222 47% 11%);
+  --color-card-hover: hsl(222 47% 14%);
+  --color-border: hsl(222 47% 18%);
+  --color-muted: hsl(222 47% 55%);
+  --color-foreground: hsl(210 40% 96%);
+  --color-foreground-dim: hsl(222 47% 65%);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
+
+/* Hide number-input spinners (quantity/amount fields) — values are edited
+   directly or via formatted fields instead. */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+@media print {
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important;
+    background: white !important;
+    color: black !important;
+  }
+  /* Neutralize the fixed-viewport app shell so page content flows
+     naturally across printed pages instead of being boxed/clipped. */
+  .app-shell,
+  .app-column {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .app-main {
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+
+  /* Interactive controls are chrome, not content — hide them so
+     accidental Ctrl+P on a form doesn't print input boxes/buttons. */
+  button,
+  input,
+  select,
+  textarea {
+    display: none !important;
+  }
+  [data-sonner-toast] {
+    display: none !important;
+  }
+
+  /* ---- Color clarity: the dark theme is unreadable on white paper ----
+     `@theme inline` resolves theme colors into the utility classes at
+     build time, so overriding the CSS variables has no effect here —
+     the utility classes themselves must be overridden. */
+  .text-foreground {
+    color: #111111 !important;
+  }
+  .text-foreground-dim {
+    color: #333333 !important;
+  }
+  .text-muted {
+    color: #444444 !important;
+  }
+  .text-gray-400 {
+    color: #666666 !important;
+  }
+  /* Badge/semantic colors darkened for contrast on white paper. */
+  .text-primary {
+    color: #4338ca !important;
+  }
+  .text-success {
+    color: #15803d !important;
+  }
+  .text-accent {
+    color: #b45309 !important;
+  }
+  .text-danger {
+    color: #c81e3c !important;
+  }
+
+  /* Keep the paper white even when the user enables "background
+     graphics", so forced dark text never lands on a dark box. */
+  .bg-background,
+  .bg-card,
+  .bg-card-hover {
+    background-color: #ffffff !important;
+  }
+
+  /* ---- Tables across pages ---- */
+  .overflow-x-auto {
+    overflow: visible !important;
+  }
+  thead {
+    display: table-header-group !important;
+  }
+  /* Never split a row across pages; repeat headers instead. */
+  tr,
+  .grid > * {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+}
