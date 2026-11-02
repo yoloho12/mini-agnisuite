@@ -488,4 +488,4 @@ The product should be treated as a real-world warehouse management platform, wit
 
 ## License
 
-Internal use only.
+This project is distributed under the MIT License. See [LICENSE](./LICENSE).
